@@ -25,7 +25,8 @@ namespace Booking.DataRepositories.RepositoryImplementor
 
         public async Task DeleteAsync(string id)
         {
-            await collection.DeleteOneAsync(id);
+            var filter = Builders<MovieEntity>.Filter.Eq(x => x.Id, id);
+            await collection.DeleteOneAsync(filter);
         }
 
         public async Task<List<MovieEntity>> GetAllAsync()
